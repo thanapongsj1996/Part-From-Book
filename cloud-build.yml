@@ -1,0 +1,26 @@
+steps:
+    - name: 'gcr.io/cloud-builders/docker'
+      entrypoint: 'bash'
+      args:
+        - '-c'
+        - |
+          docker pull gcr.io/part-from-book/part-from-book:latest || exit 0
+    - name: gcr.io/cloud-builders/docker
+      timeout: 1200s
+      args:
+        [
+          'build',
+          '-f',
+          'Dockerfile',
+          '-t',
+          'gcr.io/part-from-book/part-from-book',
+          '--cache-from',
+          'gcr.io/part-from-book/part-from-book:latest',
+          '.',
+        ]
+timeout: 1200s
+images:
+    - gcr.io/part-from-book/part-from-book
+
+# gcloud builds submit --project "part-from-book" --config=./cloud-build.yml
+# gcloud beta run deploy part-from-book --region asia-northeast1 --project "part-from-book" --image gcr.io/part-from-book/part-from-book --platform managed
