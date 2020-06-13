@@ -42,10 +42,13 @@ export default {
 }
 
 @keyframes logo-fade {
-  from {
+  0% {
     opacity: 0;
   }
-  to {
+  20% {
+    opacity: 0;
+  }
+  100% {
     opacity: 0.75;
   }
 }
