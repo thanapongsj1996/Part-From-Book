@@ -1,7 +1,7 @@
 <template>
   <v-layout justify-center align-center>
     <div class="text-center">
-      <img class="logo-img" src="~/assets/images/book.png" width="100" />
+      <img class="logo-img" src="~/assets/images/book.png" />
       <div class="fade-header">
         <h3>A Part From The Book</h3>
         <p>Coming soon...</p>
@@ -20,29 +20,36 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .logo-img {
-  opacity: 0.7;
-  animation-name: fadein;
+  width: 120px;
+  opacity: 0.75;
+  animation-name: logo-fade;
   animation-duration: 4s;
   animation-iteration-count: 1;
+  transition: 0.2s;
+}
+.logo-img:hover {
+  width: 130px;
 }
 .fade-header {
-  opacity: 0.7;
-  animation-name: fadein2;
+  margin-top: 20px;
+  opacity: 0.75;
+  animation-name: text-fade;
   animation-duration: 4s;
   animation-iteration-count: 1;
+  animation-timing-function: linear;
 }
 
-@keyframes fadein {
+@keyframes logo-fade {
   from {
     opacity: 0;
   }
   to {
-    opacity: 0.7;
+    opacity: 0.75;
   }
 }
-@keyframes fadein2 {
+@keyframes text-fade {
   0% {
     opacity: 0;
   }
@@ -50,7 +57,7 @@ export default {
     opacity: 0;
   }
   100% {
-    opacity: 0.7;
+    opacity: 0.75;
   }
 }
 </style>
