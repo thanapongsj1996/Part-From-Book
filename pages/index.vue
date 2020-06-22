@@ -4,7 +4,7 @@
       <img class="logo-img" src="~/assets/images/book.png" />
       <div class="fade-header">
         <h3>A Part From The Book</h3>
-        <p>Coming soon....</p>
+        <p>Coming soon...</p>
       </div>
     </div>
   </v-layout>
