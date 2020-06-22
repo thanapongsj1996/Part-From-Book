@@ -34,6 +34,6 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/part-from-book']
   # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'part-from-book', '--image', 'gcr.io/$PROJECT_ID/part-from-book', '--region', 'asia-northeast1','--platform', 'part-from-book', '--quiet']
+  args: ['beta', 'run', 'deploy', 'part-from-book', '--image', 'gcr.io/$PROJECT_ID/part-from-book', '--region', 'asia-northeast1','--platform', 'managed', '--quiet']
 images:
 - gcr.io/$PROJECT_ID/part-from-book
