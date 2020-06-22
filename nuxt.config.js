@@ -49,10 +49,36 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  auth: {
+    redirect: {
+      login: '/login'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'https://part-from-book.herokuapp.com/api/v1/user/login',
+            method: 'post',
+            propertyName: 'data.access_token'
+          },
+          logout: {
+            url: 'https://part-from-book.herokuapp.com/api/v1/user/logout',
+            method: 'delete'
+          },
+          user: {
+            url: 'https://part-from-book.herokuapp.com/api/v1/user/profile',
+            method: 'get',
+            propertyName: 'data'
+          }
+        }
+      }
+    }
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
