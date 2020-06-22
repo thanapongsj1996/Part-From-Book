@@ -26,18 +26,20 @@
 # gcloud beta run deploy part-from-book --region asia-northeast1 --project "part-from-book" --image gcr.io/part-from-book/part-from-book --platform managed
 
 steps:
+      # build the container image
+    - name: 'gcr.io/cloud-builders/docker'
+      timeout: 1200s
+      args: ['build', '-t', 'gcr.io/$PROJECT_ID/part-from-book', '.']
 
-  # build the container image
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/part-from-book', '.']
+      # push the container image to Container Registry
+    - name: 'gcr.io/cloud-builders/docker'
+      args: ['push', 'gcr.io/$PROJECT_ID/part-from-book']
 
-  # push the container image to Container Registry
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', 'gcr.io/$PROJECT_ID/part-from-book']
+      # Deploy container image to Cloud Run
+    - name: 'gcr.io/cloud-builders/gcloud'
+      timeout: 1200s
+      args: ['beta', 'run', 'deploy', 'part-from-book', '--image', 'gcr.io/$PROJECT_ID/part-from-book', '--region', 'asia-northeast1','--platform', 'managed', '--quiet']
 
-  # Deploy container image to Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'part-from-book', '--image', 'gcr.io/$PROJECT_ID/part-from-book', '--region', 'asia-northeast1','--platform', 'managed', '--quiet']
-
-# images:
-# - gcr.io/$PROJECT_ID/part-from-book
+timeout: 1200s
+images:
+- gcr.io/$PROJECT_ID/part-from-book
