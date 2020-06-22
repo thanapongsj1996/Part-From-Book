@@ -1,6 +1,6 @@
 <template>
   <div>
-    Login Page
+    Login to Part From Book Site!
     <v-text-field v-model="username" label="Username"></v-text-field>
     <v-text-field
       v-model="password"
